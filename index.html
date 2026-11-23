@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GO. Green Office · Inicio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="estilos.css"> <!-- CONEXIÓN CSS -->
+</head>
+<body>
+
+<!-- SVG Defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo-go" viewBox="0 0 300 270">
+      <circle cx="140" cy="120" r="100" fill="none" stroke="#1a4a1c" stroke-width="7" stroke-dasharray="520 80"/>
+      <text x="135" y="138" font-family="'Montserrat', sans-serif" font-weight="800" font-size="78" fill="#bd4709" text-anchor="middle">GO.</text>
+      <g transform="translate(115, 185) scale(0.9)">
+        <rect x="20" y="5" width="25" height="20" fill="none" stroke="#1a4a1c" stroke-width="3"/>
+        <path d="M45 12 L56 12 L62 20 L62 25 L45 25 Z" fill="none" stroke="#1a4a1c" stroke-width="3"/>
+        <circle cx="30" cy="27" r="4" fill="#1a4a1c"/>
+        <circle cx="53" cy="27" r="4" fill="#1a4a1c"/>
+        <line x1="5" y1="10" x2="16" y2="10" stroke="#1a4a1c" stroke-width="3"/>
+        <line x1="8" y1="16" x2="16" y2="16" stroke="#1a4a1c" stroke-width="3"/>
+        <line x1="12" y1="22" x2="16" y2="22" stroke="#1a4a1c" stroke-width="3"/>
+      </g>
+      <text x="140" y="248" font-family="'Montserrat', sans-serif" font-weight="700" font-size="13" fill="#bd4709" text-anchor="middle" letter-spacing="1.5">GREEN OFFICE</text>
+    </symbol>
+  </defs>
+</svg>
+<a class="wa"
+   href="https://wa.me/5491132060339?text=Hola%20Green%20Office%21%20Quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20viandas%20y%20realizar%20una%20consulta."
+   target="_blank"
+   rel="noopener noreferrer">
+   💬 Consultar por WhatsApp
+</a>
+
+<!-- Modal control de edad -->
+<div id="gate">
+  <div class="card" style="max-width:400px; text-align:center;">
+    <img src="logosolo.png" alt="Logo Green Office" style="width: 90px; height: 90px; object-fit: contain; display: block; margin: 0 auto;">
+    <h3 style="margin:10px 0 4px">Bienvenido a Green Office</h3>
+    <p style="font-size:0.9rem; color:var(--mu)">Para ingresar, confirmá tu fecha de nacimiento (servicio exclusivo para mayores de 18 años).</p>
+    <label for="g-dob">Fecha de nacimiento</label>
+    <input type="date" id="g-dob">
+    <div class="err" id="g-err"></div>
+    <button id="g-ok" style="width:100%; margin-top:10px; background-color: var(--ac); color: #fff;">Ingresar</button>
+  </div>
+</div>
+
+<div id="ov"></div>
+
+<!-- Navegación Lateral -->
+<aside id="drawer">
+  <h3 style="margin-top:0; color:var(--ac)">🍽️ Tipos de Menú</h3>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="menu-fit.html"> Menú Fit</a>
+    <a href="menu-equilibrado.html"> Menú Equilibrado</a>
+    <a href="menu-vegetariano.html">Menú Vegetariano</a>
+    <a href="menu-vegano.html"> Menú Vegano</a>
+    <a href="menu-sintacc.html"> Menú Sin TACC</a>
+    <a href="formulario.html">Formulario</a>
+  </nav>
+</aside>
+
+<header>
+  <button id="burger" aria-label="Abrir menú">☰</button>
+  <img src="logosolo.png" alt="Green Office Logo" style="width: 45px; height: 45px; object-fit: contain;">
+  <div>
+    <b style="color:var(--ac); display:block; font-size:1.1rem;">GO.</b>
+    <span style="font-size:0.7rem; color:var(--ac-orange); font-weight:700; letter-spacing:1px">GREEN OFFICE</span>
+  </div>
+</header>
+<main>
+  <div class="hero">
+    <div style="display:flex; align-items:center; gap:15px; margin-bottom:10px;">
+      <img src="logosolo.png" alt="Green Office Logo" style="width: 45px; height: 45px; object-fit: contain;">
+      <div>
+        <h1 style="margin:0">Green Office</h1>
+        <span style="color:var(--ac-orange); font-weight:700">Comida saludable, directo a tu oficina</span>
+      </div>
+    </div>
+    <p>Viandas caseras, ricas y equilibradas, listas para disfrutar. Ahorrá tiempo, organizá tus comidas y elegí el plan ideal para tu empresa.<br><b>¡Comé rico, comé bien, disfrutá más!</b></p>
+    <div class="promo">🎉 Plan <b>MENSUAL: 20% de descuento</b></div>
+    <a href="formulario.html" class="btn orange" style="display:inline-block; text-decoration:none;">Quiero mi propuesta</a>
+    <a href="menu.html" class="btn ghost" style="display:inline-block; text-decoration:none;">Ver Menú y Nutrición</a>
+  </div>
+
+  <div class="grid" style="margin-top:16px;">
+    <div class="card"><h3>💪 Fit</h3><p>Altas en proteína, equilibradas en calorías.</p></div>
+    <div class="card"><h3>⚖️ Equilibrado</h3><p>Comidas completas y contundentes.</p></div>
+    <div class="card"><h3>🧀 Vegetariano</h3><p>Sin carne, ricas en huevos y lácteos.</p></div>
+    <div class="card"><h3>🌱 Vegano</h3><p>100% vegetal, con proteína de legumbres.</p></div>
+    <div class="card"><h3>🌾 Sin TACC</h3><p>Libres de gluten y máxima higiene.</p></div>
+  </div>
+</main>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const gate = document.getElementById("gate");
+  const button = document.getElementById("g-ok");
+  const dateInput = document.getElementById("g-dob");
+  const error = document.getElementById("g-err");
+
+  if (!gate || !button || !dateInput || !error) return;
+
+  if (sessionStorage.getItem("go_mayor") === "1") {
+    gate.remove();
+    return;
+  }
+
+  button.addEventListener("click", () => {
+    error.textContent = "";
+
+    if (!dateInput.value) {
+      error.textContent = "Ingresá tu fecha de nacimiento.";
+      return;
+    }
+
+    const partes = dateInput.value.split("-").map(Number);
+    const nacimiento = new Date(partes[0], partes[1] - 1, partes[2]);
+    const hoy = new Date();
+
+    if (
+      partes.length !== 3 ||
+      Number.isNaN(nacimiento.getTime()) ||
+      nacimiento.getFullYear() !== partes[0] ||
+      nacimiento.getMonth() !== partes[1] - 1 ||
+      nacimiento.getDate() !== partes[2] ||
+      nacimiento > hoy
+    ) {
+      error.textContent = "Ingresá una fecha de nacimiento válida.";
+      return;
+    }
+
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    const aunNoCumplio =
+      hoy.getMonth() < nacimiento.getMonth() ||
+      (hoy.getMonth() === nacimiento.getMonth() &&
+       hoy.getDate() < nacimiento.getDate());
+
+    if (aunNoCumplio) edad--;
+
+    if (edad < 18) {
+      error.textContent = "El servicio está disponible únicamente para mayores de 18 años.";
+      return;
+    }
+
+    sessionStorage.setItem("go_mayor", "1");
+    gate.remove();
+  });
+});
+</script>
+
+<script src="db.js"></script> <!-- CONEXIÓN JS -->
+</body>
+</html>

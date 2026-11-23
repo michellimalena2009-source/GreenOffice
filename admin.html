@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GO. Green Office · Base de Datos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<a class="wa" data-wa>💬 Consultar por WhatsApp</a>
+<div id="ov"></div>
+
+<!-- Menú lateral SIN el enlace a admin.html -->
+<aside id="drawer">
+  <h3 style="margin-top:0; color:var(--ac)">🍽️ Tipos de Menú</h3>
+  <nav>
+    <a href="index.html">🏠 Inicio</a>
+    <a href="menu-fit.html">💪 Menú Fit</a>
+    <a href="menu-equilibrado.html">⚖️ Menú Equilibrado</a>
+    <a href="menu-vegetariano.html">🧀 Menú Vegetariano</a>
+    <a href="menu-vegano.html">🌱 Menú Vegano</a>
+    <a href="menu-sintacc.html">🌾 Menú Sin TACC</a>
+    <a href="formulario.html">📝 Formulario de alta</a>
+  </nav>
+</aside>
+<header>
+  <button id="burger" aria-label="Abrir menú">☰</button>
+  <div><b style="color:var(--ac); display:block; font-size:1.1rem;">GO. Base de Datos</b></div>
+</header>
+
+<!-- El contenido estará oculto por defecto hasta poner la contraseña -->
+<main id="admin-content" style="display:none;">
+  <h2>🔒 Base de Datos de Clientes</h2>
+  <div style="display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap;">
+    <button id="csv-btn">⬇ Exportar a Excel (.CSV)</button>
+    <button id="clear-btn" class="ghost">Limpiar vista</button>
+  </div>
+  <div class="tw card">
+    <table id="tb"></table>
+  </div>
+</main>
+
+<script src="db.js"></script>
+<script>
+  // Contraseña de acceso al panel de administración
+  const claveSecreta = "proyecto.viandas"; // <-- Cambiá esto por tu contraseña personal
+  
+  const ingreso = prompt("🔒 Panel protegido. Ingresá la contraseña de administrador:");
+  
+  if (ingreso === claveSecreta) {
+    // Si la contraseña es correcta, mostramos el contenido de la página
+    document.getElementById("admin-content").style.display = "block";
+  } else {
+    // Si es incorrecta o cancela, lo redirigimos al inicio
+    alert("❌ Contraseña incorrecta. Acceso denegado.");
+    window.location.href = "index.html";
+  }
+</script>
+</body>
+</html>

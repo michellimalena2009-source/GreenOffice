@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GO. Green Office · Formulario </title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="estilos.css"> <!-- CONEXIÓN CSS -->
+</head>
+<body>
+
+<a class="wa" data-wa>💬 Consultar por WhatsApp</a>
+<div id="ov"></div>
+
+<aside id="drawer">
+  <h3 style="margin-top:0; color:var(--ac)">🍽️ Tipos de Menú</h3>
+  <nav>
+    <a href="index.html">🏠 Inicio</a>
+    <a href="menu-fit.html">💪 Menú Fit</a>
+    <a href="menu-equilibrado.html">⚖️ Menú Equilibrado</a>
+    <a href="menu-vegetariano.html">🧀 Menú Vegetariano</a>
+    <a href="menu-vegano.html">🌱 Menú Vegano</a>
+    <a href="menu-sintacc.html">🌾 Menú Sin TACC</a>
+    <a href="formulario.html">📝 Formulario </a>
+  </nav>
+</aside>
+<header>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <button id="burger" aria-label="Abrir menú">☰</button>
+  <div><b style="color:var(--ac); display:block; font-size:1.1rem;">GO. Formulario</b></div>
+</header>
+
+<main>
+  <h2>Formulario de la empresa</h2>
+  <p style="color:var(--mu)">Ingresá los datos de tu empresa. Guardado automático en la base de datos.</p>
+  <form id="f" class="card" autocomplete="off">
+    <div class="grid">
+      <div><label>Empresa / Coworking *</label><input id="empresa" required></div>
+      <div><label>CUIT * (11 dígitos)</label><input id="cuit" placeholder="30-12345678-9" required></div>
+      <div><label>Tipo de empresa *</label>
+        <select id="tipo" required>
+          <option value="">Elegir…</option>
+          <option>Coworking</option>
+          <option>Oficina / PyME</option>
+          <option>Startup</option>
+          <option>Estudio profesional</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div><label>Nombre del responsable *</label><input id="nombre" required></div>
+      <div><label>DNI del responsable *</label><input id="dni" required></div>
+      <div><label>Fecha de nacimiento * (+18)</label><input type="date" id="dob" required></div>
+      <div><label>Email *</label><input type="email" id="email" required></div>
+      <div><label>Teléfono / WhatsApp *</label><input id="tel" required></div>
+      <div><label>Dirección de entrega *</label><input id="dir" required></div>
+      <div><label>Localidad / Barrio *</label><input id="loc" required></div>
+      <div><label>Viandas por día (aprox.) *</label><input type="number" id="cant" min="1" required></div>
+      <div><label>Plan *</label>
+        <select id="plan" required>
+          <option value="">Elegir…</option>
+          <option>Mensual (20% OFF)</option>
+          <option>Semanal</option>
+        </select>
+      </div>
+    </div>
+    
+    <label>Días de servicio</label>
+    <div id="dias" style="display:flex;flex-wrap:wrap;gap:12px"></div>
+    
+    <label>Categorías requeridas</label>
+    <div class="grid" id="prefs"></div>
+    
+    <label>Observaciones o Alergias</label>
+    <textarea id="obs" rows="2"></textarea>
+    
+    <label class="chk"><input type="checkbox" id="mayor" required> Confirmo que soy mayor de 18 años</label>
+    <label class="chk"><input type="checkbox" id="cons" required> Acepto el tratamiento de datos personales</label>
+    
+    <div class="err" id="f-err"></div>
+    <button type="submit" class="orange" style="width:100%; margin-top:10px;">Enviar y Guardar en Base de Datos</button>
+    <div id="f-ok" style="margin-top:10px;font-weight:600;color:var(--ac)"></div>
+  </form>
+</main>
+
+<script src="db.js"></script> <!-- CONEXIÓN JS -->
+</body>
+</html>

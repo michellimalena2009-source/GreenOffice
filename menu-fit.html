@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GO. Green Office · Menú Fit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<a class="wa" data-wa>💬 Consultar por WhatsApp</a>
+<div id="ov"></div>
+
+<aside id="drawer">
+  <h3 style="margin-top:0; color:var(--ac)">🍽️ Tipos de Menú</h3>
+  <nav>
+    <a href="index.html"> Inicio</a>
+    <a href="menu-fit.html">Menú Fit</a>
+    <a href="menu-equilibrado.html"> Menú Equilibrado</a>
+    <a href="menu-vegetariano.html"> Menú Vegetariano</a>
+    <a href="menu-vegano.html"> Menú Vegano</a>
+    <a href="menu-sintacc.html"> Menú Sin TACC</a>
+    <a href="formulario.html"> Formulario de alta</a>
+  </nav>
+</aside>
+
+<header>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <button id="burger" aria-label="Abrir menú">☰</button>
+  <div><b style="color:var(--ac); display:block; font-size:1.1rem;">💪 Menú Fit</b></div>
+</header>
+
+<main>
+  <h2>Valores Nutricionales · Fit</h2>
+  <p style="color:var(--mu)">Altas en proteína, equilibradas en calorías y diseñadas para mantener tu rendimiento.</p>
+  <div class="card" id="menu-fit-container"></div>
+</main>
+
+<script>
+const platosFit = [
+  ["Bowl de quinoa y salmón", 30, 30, 15, 25],
+  ["Pollo al limón con puré de camote", 35, 30, 10, 25],
+  ["Wrap integral de pavo", 30, 35, 10, 25]
+];
+
+function singlePieChart(p, c, g, v) {
+  const items = [
+    { label: "Proteínas", val: p, col: "#ea4335" },
+    { label: "Carbohidratos", val: c, col: "#f4a640" },
+    { label: "Grasas", val: g, col: "#4285f4" },
+    { label: "Verduras", val: v, col: "#34a853" }
+  ];
+  const cx = 170, cy = 110, r = 65;
+  let currentAngle = -Math.PI / 2;
+  let paths = "";
+
+  items.forEach(item => {
+    if (item.val <= 0) return;
+    const sliceAngle = (item.val / 100) * (Math.PI * 2);
+    const endAngle = currentAngle + sliceAngle;
+    const midAngle = currentAngle + sliceAngle / 2;
+
+    const x1 = cx + r * Math.cos(currentAngle);
+    const y1 = cy + r * Math.sin(currentAngle);
+    const x2 = cx + r * Math.cos(endAngle);
+    const y2 = cy + r * Math.sin(endAngle);
+
+    const largeArc = sliceAngle > Math.PI ? 1 : 0;
+    const pathData = `M ${cx} ${cy} L ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r} ${r} 0 ${largeArc} 1 ${x2.toFixed(1)} ${y2.toFixed(1)} Z`;
+
+    const px = cx + r * Math.cos(midAngle);
+    const py = cy + r * Math.sin(midAngle);
+    const ex = cx + (r + 18) * Math.cos(midAngle);
+    const ey = cy + (r + 18) * Math.sin(midAngle);
+    const isRight = Math.cos(midAngle) >= 0;
+    const hx = ex + (isRight ? 15 : -15);
+    const textAnchor = isRight ? "start" : "end";
+    const tx = hx + (isRight ? 4 : -4);
+
+    paths += `<path d="${pathData}" fill="${item.col}" stroke="#fff" stroke-width="2"/>
+      <polyline points="${px.toFixed(1)},${py.toFixed(1)} ${ex.toFixed(1)},${ey.toFixed(1)} ${hx.toFixed(1)},${ey.toFixed(1)}" fill="none" stroke="#888" stroke-width="1"/>
+      <text x="${tx.toFixed(1)}" y="${(ey - 2).toFixed(1)}" text-anchor="${textAnchor}">${item.label}</text>
+      <text x="${tx.toFixed(1)}" y="${(ey + 10).toFixed(1)}" text-anchor="${textAnchor}" class="pc">${item.val}%</text>`;
+    currentAngle = endAngle;
+  });
+  return `<svg class="pie" viewBox="0 0 340 220" style="width:100%; max-width:360px;">${paths}</svg>`;
+}
+
+document.getElementById("menu-fit-container").innerHTML = platosFit.map(([name, p, c, g, v]) => `
+  <div class="dish">
+    <strong class="dish-title">${name}</strong>
+    <div class="pie-chart-container">${singlePieChart(p, c, g, v)}</div>
+  </div>
+`).join("");
+</script>
+<script src="db.js"></script>
+</body>
+</html>

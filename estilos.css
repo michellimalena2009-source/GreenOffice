@@ -1,0 +1,281 @@
+:root {
+  --bg: #f8f6f2;
+  --card: #ffffff;
+  --tx: #1c241b;
+  --mu: #5a6659;
+  --ac: #1a4a1c;
+  --ac-orange: #fc9750;;
+  --ac2: #eef3ed;
+  --bd: #d4ded3;
+  --er: #b3261e;
+  box-sizing: border-box;
+}
+
+@media(prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121813;
+    --card: #1c241c;
+    --tx: #e8eee8;
+    --mu: #a0b2a1;
+    --ac: #2d7330;
+    --ac-orange: #fc9750;
+    --ac2: #223323;
+    --bd: #2e4030;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--tx);
+  font: 16px/1.55 'Montserrat', system-ui, -apple-system, sans-serif;
+}
+
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--bd);
+}
+
+.logo-svg { width: 48px; height: 48px; flex: none; }
+
+button, .btn {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: var(--ac);
+  color: #fff;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+button:hover { opacity: 0.9; }
+button.ghost { background: var(--ac2); color: var(--ac); }
+button.orange { background: var(--ac-orange); color: #fff; }
+
+#burger { background: none; color: var(--tx); font-size: 1.6rem; padding: 2px 8px; }
+
+main { max-width: 880px; margin: 0 auto; padding: 20px 16px 60px; }
+
+h1, h2, h3 { color: var(--ac); font-weight: 800; }
+h1 { font-size: 2rem; line-height: 1.2; margin: 0.2em 0; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: 14px;
+  padding: 18px;
+  margin: 14px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+label { display: block; font-weight: 600; font-size: 0.88rem; margin: 10px 0 4px; }
+input, select, textarea {
+  width: 100%; font: inherit; padding: 10px; border-radius: 8px;
+  border: 1px solid var(--bd); background: var(--bg); color: var(--tx);
+}
+
+.chk { display: flex; gap: 8px; align-items: center; font-weight: 400; margin: 6px 0; }
+.chk input { width: auto; }
+
+.err { color: var(--er); font-size: 0.85rem; min-height: 1.1em; }
+.pill {
+  display: inline-block; padding: 4px 12px; border-radius: 99px;
+  background: var(--ac2); color: var(--ac); font-size: 0.8rem; font-weight: 700;
+}
+
+#drawer {
+  position: fixed; top: 0; bottom: 0; left: 0; width: 290px; max-width: 85vw;
+  background: var(--card); border-right: 1px solid var(--bd);
+  transform: translateX(-100%); transition: 0.25s; z-index: 20; padding: 20px 16px; overflow-y: auto;
+}
+#drawer.open { transform: none; }
+#ov { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 15; display: none; }
+#ov.open { display: block; }
+
+.opt {
+  display: block; width: 100%; text-align: left; margin: 6px 0;
+  background: var(--bg); color: var(--tx); border: 2px solid var(--bd);
+  padding: 8px 12px; border-radius: 8px;
+}
+.opt.sel { border-color: var(-ac-orange); background: #fdf3ed; color: var(--ac-orange); font-weight: 700; }
+
+nav a {
+  display: block; padding: 10px 4px; color: var(--tx);
+  text-decoration: none; cursor: pointer; border-bottom: 1px solid var(--bd); font-weight: 600;
+}
+
+#gate {
+  position: fixed; inset: 0; z-index: 50; background: var(--bg);
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+}
+
+.hero { background: var(--ac2); border-radius: 18px; padding: 28px 20px; border: 1px solid var(--bd); }
+.wa {
+  position: fixed; right: 16px; bottom: 16px; z-index: 10;
+  background: #25d366; color: #fff; text-decoration: none;
+  padding: 12px 18px; border-radius: 99px; font-weight: 700; box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+.promo { background: #f97316; color: #fff; border-radius: 10px; padding: 12px 16px; margin: 14px 0; font-weight: 500; }
+.dish-title { font-size: 1.1rem; color: var(--ac-orange); margin-bottom: 8px; display: block; }
+.pie-chart-container { display: flex; justify-content: center; align-items: center; margin: 12px 0; }
+.pie text { fill: var(--tx); font-size: 10px; font-family: sans-serif; }
+.pie text.pc { font-weight: 700; }
+.tw { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+td, th { border-bottom: 1px solid var(--bd); padding: 8px; text-align: left; white-space: nowrap; }
+th { background: var(--ac2); color: var(--ac); }
+
+/* --- 1. CONFIGURACIÓN GENERAL PARA ESCALABILIDAD --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden; /* Evita que aparezca un scroll horizontal molesto en celulares */
+}
+
+/* --- 2. ASEGURAR QUE LAS IMÁGENES NO SE ROMPAN --- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Si tienes clases específicas para logos o imágenes grandes */
+.logo, img[src*="Logo"], img[src*="logo"] {
+  max-width: 150px; /* Tamaño controlado para celulares */
+  width: 100%;
+  height: auto;
+}
+
+/* --- 3. CONTENEDORES FLEXIBLES (Diseño responsivo automático) --- */
+/* Si usas contenedores de secciones o productos/menús, usa Flexbox o Grid adaptativo */
+.contenedor, .menu-container, .grid-viandas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 15px;
+}
+
+/* Elementos internos que se adaptan automáticamente a la pantalla */
+.card, .vianda-item, .menu-card {
+  flex: 1 1 280px; /* Se adaptan en la PC y bajan de renglón ordenadamente en el celular */
+  max-width: 350px;
+}
+
+/* --- 4. MEDIA QUERIES PARA CELULARES (Pantallas menores a 768px) --- */
+@media screen and (max-width: 768px) {
+  /* Ajustes generales para celulares (iOS / Android) */
+  body {
+    font-size: 16px; /* Tamaño de letra legible para pantallas táctiles */
+    padding: 10px;
+  }
+
+  /* Si tienes menús de navegación horizontales, conviértelos en verticales */
+  nav ul, .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  nav li {
+    margin: 10px 0;
+  }
+
+  /* Tablas responsivas (muy útil si usas CSV o tablas de administración) */
+  table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+  }
+}
+/* Fotos, precios y carrito */
+#cart-btn { margin-left: auto; border-radius: 99px; padding: 6px 14px; }
+#cart-count { background: var(--ac-orange); padding: 2px 7px; border-radius: 99px; font-size: 0.85rem; }
+
+.dish { border-bottom: 1px solid var(--bd); padding-bottom: 16px; margin-bottom: 18px; }
+.dish:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.vianda-foto {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.vianda-precio {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--ac);
+  margin: 4px 0 8px;
+}
+
+#cart-drawer {
+  position: fixed; top: 0; bottom: 0; right: 0; width: 320px; max-width: 88vw;
+  background: var(--card); border-left: 1px solid var(--bd);
+  transform: translateX(100%); transition: 0.25s; z-index: 25;
+  padding: 20px 16px; display: flex; flex-direction: column;
+}
+#cart-drawer.open { transform: none; }
+
+.cart-row { display: flex; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--bd); font-size: 0.9rem; }
+.cart-row img { width: 52px; height: 52px; object-fit: cover; border-radius: 8px; }
+.cart-qty { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.cart-qty button { padding: 2px 8px; background: var(--ac2); color: var(--ac); border-radius: 6px; }
+/* ==========================================
+   AGREGADOS PARA FOTOS, PRECIOS Y CARRITO
+   ========================================== */
+.vianda-foto {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.vianda-precio {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--ac);
+  margin: 4px 0 6px;
+}
+
+#cart-drawer {
+  position: fixed; top: 0; bottom: 0; right: 0; width: 320px; max-width: 88vw;
+  background: var(--card); border-left: 1px solid var(--bd);
+  transform: translateX(100%); transition: 0.25s; z-index: 25;
+  padding: 20px 16px; display: flex; flex-direction: column;
+}
+#cart-drawer.open { transform: none; }
+
+.cart-row { display: flex; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--bd); font-size: 0.9rem; }
+.cart-row img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; }
+.cart-qty { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.cart-qty button { padding: 2px 8px; background: var(--ac2); color: var(--ac); border-radius: 6px; }
+
+
+/* Ajustes de tarjetas de viandas y acciones del carrito */
+.dish { display: flow-root; }
+.dish img { display: block; }
+#cart-drawer button { cursor: pointer; }

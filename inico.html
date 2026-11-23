@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GO. Green Office · Inicio y Menú</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap">
+<style>
+  :root {
+    --bg: #f8f6f2; --card: #ffffff; --tx: #1c241b; --mu: #5a6659;
+    --ac: #1a4a1c; --ac-orange: #fc9750; --ac2: #eef3ed; --bd: #d4ded3; --er: #b3261e;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--tx); font: 16px/1.55 'Montserrat', sans-serif; }
+  
+  /* Modal de Edad */
+  #gate { position: fixed; inset: 0; z-index: 100; background: var(--bg); display: flex; align-items: center; justify-content: center; padding: 16px; }
+  .card { background: var(--card); border: 1px solid var(--bd); border-radius: 14px; padding: 22px; max-width: 400px; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; }
+  
+  header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: var(--card); border-bottom: 1px solid var(--bd); }
+  main { max-width: 880px; margin: 0 auto; padding: 20px 16px 60px; }
+  h1, h2, h3 { color: var(--ac); font-weight: 800; }
+  button, .btn { font: inherit; cursor: pointer; border: 0; border-radius: 10px; padding: 10px 16px; background: var(--ac); color: #fff; font-weight: 600; width: 100%; margin-top: 10px; }
+  button.orange { background: var(--ac-orange); color: #fff; }
+  button.ghost { background: var(--ac2); color: var(--ac); }
+  
+  input { width: 100%; font: inherit; padding: 10px; border-radius: 8px; border: 1px solid var(--bd); background: var(--bg); color: var(--tx); margin-top: 6px; }
+  .err { color: var(--er); font-size: 0.85rem; margin-top: 6px; min-height: 1.1em; }
+
+  /* Carrito Header */
+  #cart-btn { background: var(--ac); display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 99px; font-weight: 700; color: #fff; width: auto; margin: 0; }
+  #cart-count { background: var(--ac-orange); color: #fff; padding: 2px 8px; border-radius: 99px; font-size: 0.85rem; }
+
+  /* Viandas Grid */
+  .dishes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 12px; }
+  .dish-card { background: var(--card); border: 1px solid var(--bd); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+  .dish-img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
+  .dish-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .dish-title { margin: 0; font-size: 1.05rem; color: var(--tx); }
+  .dish-price { background: var(--ac2); color: var(--ac); font-weight: 800; padding: 4px 10px; border-radius: 8px; font-size: 0.95rem; white-space: nowrap; }
+
+  /* Drawer Carrito */
+  #cart-drawer { position: fixed; top: 0; bottom: 0; right: 0; width: 340px; max-width: 90vw; background: var(--card); border-left: 1px solid var(--bd); transform: translateX(100%); transition: 0.25s; z-index: 50; padding: 20px 16px; display: flex; flex-direction: column; }
+  #cart-drawer.open { transform: translateX(0); }
+  #ov { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 40; display: none; }
+  #ov.open { display: block; }
+  .cart-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--bd); align-items: center; }
+  .cart-item img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
+  .cart-qty { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+  .cart-qty button { padding: 2px 8px; background: var(--ac2); color: var(--ac); border-radius: 6px; width: auto; margin: 0; }
+  .pie text { fill: var(--tx); font-size: 10px; font-family: sans-serif; }
+  .pie text.pc { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- Control de Edad (Gate) -->
+<div id="gate">
+  <div class="card">
+    <h3 style="margin:10px 0 4px">Bienvenido a Green Office</h3>
+    <p style="font-size:0.9rem; color:var(--mu)">Para ingresar, confirmá tu fecha de nacimiento (servicio exclusivo para mayores de 18 años).</p>
+    <label for="g-dob" style="display:block; text-align:left; font-weight:600; font-size:0.88rem; margin-top:10px;">Fecha de nacimiento</label>
+    <input type="date" id="g-dob">
+    <div class="err" id="g-err"></div>
+    <button id="g-ok" class="orange">Ingresar</button>
+  </div>
+</div>
+
+<div id="ov"></div>
+
+<header>
+  <div>
+    <b style="color:var(--ac); display:block; font-size:1.1rem;">GO. Green Office</b>
+    <span style="font-size:0.7rem; color:var(--ac-orange); font-weight:700;">COMIDA SALUDABLE</span>
+  </div>
+  <button id="cart-btn">🛒 <span id="cart-count">0</span></button>
+</header>
+
+<main>
+  <h2>Nuestros Menús y Viandas</h2>
+  <p style="color:var(--mu)">Elegí tus platos favoritos, revisá los valores nutricionales y sumalos al carrito.</p>
+  <div id="menu-container"></div>
+</main>
+
+<!-- Carrito Lateral -->
+<aside id="cart-drawer">
+  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--bd); padding-bottom:10px;">
+    <h3 style="margin:0;">🛒 Tu Pedido</h3>
+    <button id="close-cart" class="ghost" style="padding:4px 10px; width:auto; margin:0;">✕</button>
+  </div>
+  <div id="cart-items" style="flex:1; overflow-y:auto; margin:12px 0;"></div>
+  <div style="border-top:1px solid var(--bd); padding-top:12px;">
+    <div style="display:flex; justify-content:space-between; font-size:1.1rem; font-weight:800; margin-bottom:12px;">
+      <span>Total:</span>
+      <span id="cart-total">$0</span>
+    </div>
+    <button class="orange" style="margin-bottom:8px;" onclick="enviarPedidoWhatsApp()">📲 Pedir por WhatsApp</button>
+    <button class="ghost" style="font-size:0.85rem;" onclick="vaciarCarrito()">Vaciar carrito</button>
+  </div>
+</aside>
+
+<script>
+const WA = "5491132060339";
+const CATALOGO = {
+  "Fit": [
+    { id: "f1", nombre: "Bowl de quinoa y salmón", precio: 8500, img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80", macros: [30, 30, 15, 25] },
+    { id: "f2", nombre: "Pollo al limón con puré de camote", precio: 7200, img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=500&q=80", macros: [35, 30, 10, 25] }
+  ],
+  "Equilibrado": [
+    { id: "e1", nombre: "Pechuga grillada con cuscús y vegetales", precio: 7400, img: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=500&q=80", macros: [25, 35, 10, 30] },
+    { id: "e2", nombre: "Penne rigate con pollo y cherrys", precio: 7100, img: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=500&q=80", macros: [25, 40, 15, 20] }
+  ],
+  "Vegetariano": [
+    { id: "v1", nombre: "Lasagna de berenjenas y espinaca", precio: 7000, img: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=500&q=80", macros: [15, 35, 20, 30] }
+  ]
+};
+
+function singlePieChart(p, c, g, v) {
+  const items = [
+    { label: "Proteínas", val: p, col: "#ea4335" },
+    { label: "Carbohidratos", val: c, col: "#f4a640" },
+    { label: "Grasas", val: g, col: "#4285f4" },
+    { label: "Verduras", val: v, col: "#34a853" }
+  ];
+  const cx = 170, cy = 110, r = 65;
+  let currentAngle = -Math.PI / 2;
+  let paths = "";
+  items.forEach(item => {
+    if (item.val <= 0) return;
+    const sliceAngle = (item.val / 100) * (Math.PI * 2);
+    const endAngle = currentAngle + sliceAngle;
+    const midAngle = currentAngle + sliceAngle / 2;
+    const x1 = cx + r * Math.cos(currentAngle), y1 = cy + r * Math.sin(currentAngle);
+    const x2 = cx + r * Math.cos(endAngle), y2 = cy + r * Math.sin(endAngle);
+    const largeArc = sliceAngle > Math.PI ? 1 : 0;
+    const pathData = `M ${cx} ${cy} L ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r} ${r} 0 ${largeArc} 1 ${x2.toFixed(1)} ${y2.toFixed(1)} Z`;
+    const px = cx + r * Math.cos(midAngle), py = cy + r * Math.sin(midAngle);
+    const ex = cx + (r + 18) * Math.cos(midAngle), ey = cy + (r + 18) * Math.sin(midAngle);
+    const isRight = Math.cos(midAngle) >= 0, hx = ex + (isRight ? 15 : -15);
+    const textAnchor = isRight ? "start" : "end", tx = hx + (isRight ? 4 : -4);
+
+    paths += `<path d="${pathData}" fill="${item.col}" stroke="#fff" stroke-width="2"/>
+      <polyline points="${px.toFixed(1)},${py.toFixed(1)} ${ex.toFixed(1)},${ey.toFixed(1)} ${hx.toFixed(1)},${ey.toFixed(1)}" fill="none" stroke="#888" stroke-width="1"/>
+      <text x="${tx.toFixed(1)}" y="${(ey - 2).toFixed(1)}" text-anchor="${textAnchor}">${item.label}</text>
+      <text x="${tx.toFixed(1)}" y="${(ey + 10).toFixed(1)}" text-anchor="${textAnchor}" class="pc">${item.val}%</text>`;
+    currentAngle = endAngle;
+  });
+  return `<svg class="pie" viewBox="0 0 340 220" style="width:100%; max-width:320px;">${paths}</svg>`;
+}
+
+function renderMenu() {
+  const container = document.getElementById("menu-container");
+  container.innerHTML = Object.keys(CATALOGO).map(cat => `
+    <div style="background:var(--card); border:1px solid var(--bd); border-radius:14px; padding:18px; margin:14px 0;">
+      <h3>${cat}</h3>
+      <div class="dishes-grid">
+        ${CATALOGO[cat].map(plato => `
+          <div class="dish-card">
+            <img src="${plato.img}" alt="${plato.nombre}" class="dish-img">
+            <div>
+              <div class="dish-header">
+                <strong class="dish-title">${plato.nombre}</strong>
+                <span class="dish-price">$${plato.precio.toLocaleString('es-AR')}</span>
+              </div>
+              <div style="display:flex; justify-content:center;">${singlePieChart(...plato.macros)}</div>
+            </div>
+            <button class="orange" onclick="agregarAlCarrito('${plato.id}')">🛒 Agregar al carrito</button>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `).join("");
+}
+
+function getCarrito() { return JSON.parse(localStorage.getItem("go_carrito") || "[]"); }
+function saveCarrito(c) { localStorage.setItem("go_carrito", JSON.stringify(c)); actualizarUI(); }
+
+function agregarAlCarrito(id) {
+  let plato = null;
+  for (const cat in CATALOGO) {
+    const p = CATALOGO[cat].find(x => x.id === id);
+    if (p) plato = p;
+  }
+  if (!plato) return;
+  const c = getCarrito();
+  const item = c.find(i => i.id === id);
+  if (item) item.cant++;
+  else c.push({ id: plato.id, nombre: plato.nombre, precio: plato.precio, img: plato.img, cant: 1 });
+  saveCarrito(c);
+  document.getElementById("cart-drawer").classList.add("open");
+  document.getElementById("ov").classList.add("open");
+}
+
+function cambiarCant(id, delta) {
+  let c = getCarrito();
+  const item = c.find(i => i.id === id);
+  if (!item) return;
+  item.cant += delta;
+  if (item.cant <= 0) c = c.filter(i => i.id !== id);
+  saveCarrito(c);
+}
+
+function vaciarCarrito() { saveCarrito([]); }
+
+function actualizarUI() {
+  const c = getCarrito();
+  document.getElementById("cart-count").textContent = c.reduce((a, b) => a + b.cant, 0);
+  const listEl = document.getElementById("cart-items");
+  const totalEl = document.getElementById("cart-total");
+  
+  if (!c.length) {
+    listEl.innerHTML = `<p style="color:var(--mu); text-align:center;">Tu carrito está vacío.</p>`;
+    totalEl.textContent = "$0";
+    return;
+  }
+
+  let total = 0;
+  listEl.innerHTML = c.map(i => {
+    total += i.precio * i.cant;
+    return `
+      <div class="cart-item">
+        <img src="${i.img}" alt="${i.nombre}">
+        <div style="flex:1; font-size:0.9rem;">
+          <b>${i.nombre}</b><br>
+          <span style="color:var(--ac); font-weight:700;">$${(i.precio * i.cant).toLocaleString('es-AR')}</span>
+          <div class="cart-qty">
+            <button onclick="cambiarCant('${i.id}', -1)">-</button>
+            <span>${i.cant}</span>
+            <button onclick="cambiarCant('${i.id}', 1)">+</button>
+          </div>
+        </div>
+      </div>`;
+  }).join("");
+  totalEl.textContent = `$${total.toLocaleString('es-AR')}`;
+}
+
+function enviarPedidoWhatsApp() {
+  const c = getCarrito();
+  if (!c.length) return alert("El carrito está vacío.");
+  let txt = "Hola Green Office! Quisiera pedir las siguientes viandas:\n\n";
+  let total = 0;
+  c.forEach(i => {
+    const sub = i.precio * i.cant;
+    total += sub;
+    txt += `• ${i.cant}x ${i.nombre} ($${sub.toLocaleString('es-AR')})\n`;
+  });
+  txt += `\nTotal: $${total.toLocaleString('es-AR')}`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(txt)}`, "_blank");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Control de edad
+  const gOk = document.getElementById("g-ok");
+  if (gOk) {
+    if (sessionStorage.getItem("go_mayor") === "1") {
+      document.getElementById("gate").remove();
+    } else {
+      gOk.onclick = () => {
+        const val = document.getElementById("g-dob").value;
+        if (!val) return document.getElementById("g-err").textContent = "Ingresá una fecha válida.";
+        const dob = new Date(val);
+        const age = new Date().getFullYear() - dob.getFullYear();
+        if (age < 18) return document.getElementById("g-err").textContent = "Debés ser mayor de 18 años.";
+        sessionStorage.setItem("go_mayor", "1");
+        document.getElementById("gate").remove();
+      };
+    }
+  }
+
+  renderMenu();
+  actualizarUI();
+  
+  const drawer = document.getElementById("cart-drawer");
+  const ov = document.getElementById("ov");
+  document.getElementById("cart-btn").onclick = () => { drawer.classList.add("open"); ov.classList.add("open"); };
+  document.getElementById("close-cart").onclick = () => { drawer.classList.remove("open"); ov.classList.remove("open"); };
+  ov.onclick = () => { drawer.classList.remove("open"); ov.classList.remove("open"); };
+});
+</script>
+</body>
+</html>
